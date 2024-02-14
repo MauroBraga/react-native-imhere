@@ -1,6 +1,7 @@
 import { Text, View,TextInput, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import { StatusBar } from 'expo-status-bar';
+import { Participant } from '../components/Participant';
 
 export default function Home() {
 
@@ -28,8 +29,9 @@ export default function Home() {
                 </Text>
                 </TouchableOpacity>
             </View>
-          
-
+            <Participant/>
+            <Participant/>
+            <Participant/>
         </View>
     );
 }
