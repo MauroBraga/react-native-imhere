@@ -4,28 +4,32 @@ import { StatusBar } from 'expo-status-bar';
 
 export default function Home() {
 
-    function handlerParticipanteAdd(){
+    function handleParticipantAdd(){
         console.log('Você clicou no botão add')
     }
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.eventName}>
-        Nome do Evento
-      </Text>
-      <Text style={styles.eventDate}>Seta, 4 de Novembro de 2022</Text>
-      
-      <TextInput 
-        style={styles.input}
-        placeholder='Nome do Participante'
-        placeholderTextColor="#6b6b6b"/>
+    return (
+        <View style={styles.container}>
+            <Text style={styles.eventName}>
+                Nome do Evento
+            </Text>
+            <Text style={styles.eventDate}>Seta, 4 de Novembro de 2022</Text>
+            
+            <View style={styles.form}>
+                <TextInput 
+                style={styles.input}
+                placeholder="Nome do participante"
+                placeholderTextColor="#6B6B6B"
+                />
+                
+                <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
+                <Text style={styles.buttonText}>
+                    +
+                </Text>
+                </TouchableOpacity>
+            </View>
+          
 
-    <TouchableOpacity style={styles.button} onPress={handlerParticipanteAdd}>
-        <Text style={styles.buttonText}>
-            +
-        </Text>    
-    </TouchableOpacity>  
-
-    </View>
-  );
+        </View>
+    );
 }
