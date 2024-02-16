@@ -1,17 +1,30 @@
-import { Text, View,TextInput, TouchableOpacity, ScrollView, FlatList } from 'react-native';
+import { Text, View,TextInput, TouchableOpacity, ScrollView, FlatList, Alert } from 'react-native';
 import { styles } from './styles';
 import { StatusBar } from 'expo-status-bar';
 import { Participant } from '../components/Participant';
 
 export default function Home() {
 
-    const participantes = []
+    const participantes = ['Mauro','Amanda']
 
     function handleParticipantAdd(){
-        console.log('Você clicou no botão add')
+        if(participantes.includes('Mauro')){
+           return Alert.alert("Participante","Já existe participante com esse nome")
+        }   
     }
 
-    function handleParticipantRemove(name:string){}
+    function handleParticipantRemove(name:string){
+        Alert.alert("Remover", `Remover o participante ${name}?`, [
+            {
+              text: 'Sim',
+              onPress: () => Alert.alert("Deletado!")
+            },
+            {
+              text: 'Não',
+              style: 'cancel'
+            }
+          ])
+    }
 
     return (
         <View style={styles.container}>
