@@ -1,23 +1,36 @@
 import { Text, View,TextInput, TouchableOpacity, ScrollView, FlatList, Alert } from 'react-native';
 import { styles } from './styles';
-import { StatusBar } from 'expo-status-bar';
 import { Participant } from '../components/Participant';
+import { useState } from 'react';
 
 export default function Home() {
 
-    const participantes = ['Mauro','Amanda']
+    const [participants, setParticipants] = useState<string[]>(['João']); 
+    const [participantName, setParticipantName] = useState(''); 
+
 
     function handleParticipantAdd(){
-        if(participantes.includes('Mauro')){
+        
+        if(participantName===''){
+            return Alert.alert("Participante","Campo Nome Participante está vazio")
+         }
+        
+        if(participants.includes(participantName.trim())){
            return Alert.alert("Participante","Já existe participante com esse nome")
-        }   
+        } 
+         
+        setParticipants(prevState => [...prevState, participantName.trim()]);
+        setParticipantName(''); 
     }
 
     function handleParticipantRemove(name:string){
         Alert.alert("Remover", `Remover o participante ${name}?`, [
             {
               text: 'Sim',
-              onPress: () => Alert.alert("Deletado!")
+              onPress: () => {
+                setParticipants(prevState => prevState.filter(partipant => partipant !=name))
+                Alert.alert("Deletado!");
+              }
             },
             {
               text: 'Não',
@@ -38,6 +51,8 @@ export default function Home() {
                 style={styles.input}
                 placeholder="Nome do participante"
                 placeholderTextColor="#6B6B6B"
+                onChangeText={setParticipantName}
+                value={participantName}
                 />
                 
                 <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
@@ -48,7 +63,7 @@ export default function Home() {
             </View>
            
             <FlatList 
-                data={participantes}
+                data={participants}
                 keyExtractor={item => item}
                 renderItem={ ({item}) =>(
                     <Participant    
