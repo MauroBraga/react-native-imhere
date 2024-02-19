@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 export default function Home() {
 
-    const [participants, setParticipants] = useState<string[]>(['João']); 
+    const [participants, setParticipants] = useState<string[]>([]); 
     const [participantName, setParticipantName] = useState(''); 
 
 
@@ -24,6 +24,7 @@ export default function Home() {
     }
 
     function handleParticipantRemove(name:string){
+        console.log(name)
         Alert.alert("Remover", `Remover o participante ${name}?`, [
             {
               text: 'Sim',
